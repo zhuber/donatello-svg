@@ -1,0 +1,10 @@
+{
+  "name": "donatello-svg",
+  "version": "0.0.1",
+  "description": "Procedural SVG generation, with randomized paths, shapes and fills.",
+  "main": "src/index.js",
+  "author": {
+    "name": "Zak Huber",
+    "email": "zakhuber@gmail.com"
+  }
+}
