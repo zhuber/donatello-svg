@@ -26,14 +26,13 @@ module.exports = function generateSVG(width = 24, height = 24, colors = ['#00000
     const pathCount = complexity === 'complex' ? getRandom(4, 8) : getRandom(1, 4);
     for (let paths = 0; paths < pathCount; paths++) {
       // Generate a path.
-      // TODO:
-      // Sample a color from the array of colors.
       const path = {
         id: `path-${paths}`,
         points: []
       }
       // Allow for no fill.
       if (colors.length > 0) {
+        // Sample a color from the array of colors.
         path.fill =  colors[Math.floor(Math.random() * colors.length)];
       }
       // Generate a certain number of points for each path.

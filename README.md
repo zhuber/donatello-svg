@@ -21,7 +21,7 @@ const complexSVG = generateSVG(28, 28, ['#bbaa88'], 'complex');
 
 ...
 <div>
-  {basicSVG}
+  {basicSVG} // Note: This is output as a string and you may need to massage the output depending on where you attempt to render it.
 </div>
 ```
 
