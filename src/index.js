@@ -37,10 +37,37 @@ module.exports = function generateSVG(width = 24, height = 24, colors = ['#00000
       }
       // Generate a certain number of points for each path.
       const pointCount = complexity === 'complex' ? getRandom(3, 8) : getRandom(1, 5);
+      // Allow for a certain amount of travel for each point, but step promote some sort of "semi-linear" progression.
+      const maxRanges = {
+        x: getRandom(1, width),
+        y: getRandom(1, height),
+      };
       // Add a starting point for the path.
-      path.points.push(`M${getRandom(0, width, false)}`);
-      for (let points = 0; points < pointCount; points++) {
-        path.points.push(`${getRandom(1, width, false)} ${getRandom(1, height, false)}`);
+      const locations = [
+        {
+          x: getRandom(0, width, false),
+          y: getRandom(0, height, false)
+        }
+      ];
+      path.points.push(`M${locations[0].x}`);
+      for (let points = 1; points < pointCount; points++) {
+        const previousPoint = locations[points - 1] || {x: 0, y: 0};
+        const min = {
+          x: previousPoint.x - maxRanges.x,
+          y: previousPoint.y - maxRanges.y
+        };
+        const max = {
+          x: previousPoint.x + maxRanges.x,
+          y: previousPoint.y + maxRanges.y
+        };
+        // Each point is drawn off of the previous point, instead of purely random points.
+        const nextPoint = {
+          x: getRandom(min.x, max.x, false),
+          y: getRandom(min.y, max.y, false)
+        }
+        path.points.push(`${nextPoint.x} ${nextPoint.y}`);
+        // Keep track of each point that is added.
+        locations.push(nextPoint);
       }
       group.paths.push(path);
     }
