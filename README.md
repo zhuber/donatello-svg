@@ -7,7 +7,7 @@ Automatically generate SVG assets with random paths, shapes and fill colors.
 - Width
 - Height
 - Colors (array of hex colors, or empty array for no fill, ex: [])
-- Complexity (number)
+- Complexity ('basic' or 'complex')
 
 # Usage
 
