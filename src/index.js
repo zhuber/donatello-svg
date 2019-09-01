@@ -1,7 +1,8 @@
-function getRandom(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min)) + min;
+function getRandom(minimum, maximum, integer = true) {
+  const min = Math.ceil(minimum);
+  const max = Math.floor(maximum);
+  const random = Math.random() * (max - min);
+  return integer ? Math.floor(random) + min : random;
 }
 
 const renderGraphic = (graphic) => {
@@ -38,9 +39,9 @@ module.exports = function generateSVG(width = 24, height = 24, colors = ['#00000
       // Generate a certain number of points for each path.
       const pointCount = complexity === 'complex' ? getRandom(3, 8) : getRandom(1, 5);
       // Add a starting point for the path.
-      path.points.push(`M${getRandom(0, width)}`);
+      path.points.push(`M${getRandom(0, width, false)}`);
       for (let points = 0; points < pointCount; points++) {
-        path.points.push(`${getRandom(1, width)} ${getRandom(1, height)}`);
+        path.points.push(`${getRandom(1, width, false)} ${getRandom(1, height, false)}`);
       }
       group.paths.push(path);
     }
