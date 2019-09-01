@@ -1,11 +1,58 @@
-module.exports = function generateSVG(width, height, colors, paths) {
-  // var svgTemplate = '<svg
-  //   viewBox="0 0 24 24"
-  //   xmlns="http://www.w3.org/2000/svg"
-  //   >
-  //   <g id="archive" transform="translate(-4.000000, 0.000000)">
-  //     <path d="M14.5714286,10.0769231 L14.5714286,3 L9.42857143,3 L9.42857143,10.0769231 L6,10.0769231 L12,16 L18,10.0769231 L14.5714286,10.0769231 Z M5,18 L5,20 L19,20 L19,18 L5,18 L5,18 Z" id="path-1"></path>
-  //   </g>
-  // </svg>';
-  console.log('we generating?', width, height, colors, paths);
+function getRandom(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+
+const renderGraphic = (graphic) => {
+  let renderedGraphic = `
+    <g id="${graphic.id}">
+      ${graphic.paths.map(path => `<path d="${path.points.join(', ')}" id="${path.id}" fill="${path.fill}"></path>`).join('')}
+    </g>
+  `;
+  return renderedGraphic;
+}
+
+module.exports = function generateSVG(width = 24, height = 24, colors = ['#000000'], complexity = 'basic') {
+  const graphics = [];
+  const groupCount = complexity === 'complex' ?  getRandom(2, 5) : 1;
+  for (let groups = 0; groups < groupCount; groups++) {
+    const group = {
+      id: `group-${groups}`,
+      paths: []
+    };
+    // Generate a certain number of paths for each graphic group.
+    const pathCount = complexity === 'complex' ? getRandom(4, 8) : getRandom(1, 4);
+    for (let paths = 0; paths < pathCount; paths++) {
+      // Generate a path.
+      // TODO:
+      // Sample a color from the array of colors.
+      const path = {
+        id: `path-${paths}`,
+        points: []
+      }
+      // Allow for no fill.
+      if (colors.length > 0) {
+        path.fill =  colors[Math.floor(Math.random() * colors.length)];
+      }
+      // Generate a certain number of points for each path.
+      const pointCount = complexity === 'complex' ? getRandom(3, 8) : getRandom(1, 5);
+      // Add a starting point for the path.
+      path.points.push(`M${getRandom(0, width)}`);
+      for (let points = 0; points < pointCount; points++) {
+        path.points.push(`${getRandom(1, width)} ${getRandom(1, height)}`);
+      }
+      group.paths.push(path);
+    }
+    // Generate a group.
+    graphics.push(group);
+  }
+
+  const svg = `<svg
+    viewBox="0 0 ${width} ${height}"
+    xmlns="http://www.w3.org/2000/svg"
+    >
+      ${graphics.map(graphic => renderGraphic(graphic))}
+  </svg>`;
+  return svg;
 }
