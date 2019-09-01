@@ -36,7 +36,7 @@ module.exports = function generateSVG(width = 24, height = 24, colors = ['#00000
         path.fill =  colors[Math.floor(Math.random() * colors.length)];
       }
       // Generate a certain number of points for each path.
-      const pointCount = complexity === 'complex' ? getRandom(3, 8) : getRandom(1, 5);
+      const pointCount = complexity === 'complex' ? getRandom(3, 8) : getRandom(2, 5);
       // Allow for a certain amount of travel for each point, but step promote some sort of "semi-linear" progression.
       const maxRanges = {
         x: getRandom(1, width),
