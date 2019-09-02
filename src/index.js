@@ -2,15 +2,13 @@ function getRandom(minimum, maximum, integer = true) {
   const min = Math.ceil(minimum);
   const max = Math.floor(maximum);
   const random = Math.random() * (max - min);
-  return integer ? Math.floor(random) + min : random;
+  return integer ? Math.floor(random) + min : random.toFixed(5);
 }
 
 const renderGraphic = (graphic) => {
-  let renderedGraphic = `
-    <g id="${graphic.id}">
-      ${graphic.paths.map(path => `<path d="${path.points.join(', ')}" id="${path.id}" fill="${path.fill}"></path>`).join('')}
-    </g>
-  `;
+  let renderedGraphic = `<g id="${graphic.id}">
+    ${graphic.paths.map(path => `<path d="${path.points.join(', ')}" id="${path.id}" fill="${path.fill}"></path>`).join('')}
+  </g>`;
   return renderedGraphic;
 }
 
@@ -36,7 +34,7 @@ module.exports = function generateSVG(width = 24, height = 24, colors = ['#00000
         path.fill =  colors[Math.floor(Math.random() * colors.length)];
       }
       // Generate a certain number of points for each path.
-      const pointCount = complexity === 'complex' ? getRandom(3, 8) : getRandom(2, 5);
+      const pointCount = complexity === 'complex' ? getRandom(3, 10) : getRandom(2, 5);
       // Allow for a certain amount of travel for each point, but step promote some sort of "semi-linear" progression.
       const maxRanges = {
         x: getRandom(1, width),
@@ -69,6 +67,7 @@ module.exports = function generateSVG(width = 24, height = 24, colors = ['#00000
         // Keep track of each point that is added.
         locations.push(nextPoint);
       }
+      path.points.push(getRandom(0, height, false));
       group.paths.push(path);
     }
     // Generate a group.
@@ -78,8 +77,8 @@ module.exports = function generateSVG(width = 24, height = 24, colors = ['#00000
   const svg = `<svg
     viewBox="0 0 ${width} ${height}"
     xmlns="http://www.w3.org/2000/svg"
-    >
-      ${graphics.map(graphic => renderGraphic(graphic))}
+  >
+    ${graphics.map(graphic => renderGraphic(graphic))}
   </svg>`;
   return svg;
 }
