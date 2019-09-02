@@ -1,5 +1,7 @@
 # Procedural SVG generator [![npm version](https://badge.fury.io/js/donatello-svg.svg)](https://badge.fury.io/js/donatello-svg)
 
+![Procedural SVG](http://drive.google.com/uc?export=view&id=1M43r5b4ARsU4MTb-hUdD9SQxZagBwiHs)
+
 # Overview
 Automatically generate SVG assets with random paths, shapes and fill colors.
 
@@ -7,7 +9,7 @@ Automatically generate SVG assets with random paths, shapes and fill colors.
 - Width
 - Height
 - Colors (array of hex colors, or empty array for no fill, ex: [])
-- Complexity ('basic' or 'complex')
+- Complexity (defaults to 'basic', but can also be set to 'complex')
 
 # Usage
 
@@ -16,8 +18,8 @@ Automatically generate SVG assets with random paths, shapes and fill colors.
 import generateSVG from 'donatello-svg';
 
 const basicSVG = generateSVG(28, 28);
-const specificColorSVG = generateSVG(28, 28, ['#cc66aa', '#33eeff']);
-const complexSVG = generateSVG(28, 28, ['#bbaa88'], 'complex');
+const specificColorSVG = generateSVG(28, 28, ['#cc66aa', '#ffeeff']);
+const complexSVG = generateSVG(28, 28, ['#bbaa88', '#33eeff', '#ccaaee'], 'complex');
 
 ...
 <div>

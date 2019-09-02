@@ -12,7 +12,12 @@ const renderGraphic = (graphic) => {
   return renderedGraphic;
 }
 
-module.exports = function generateSVG(width = 24, height = 24, colors = ['#000000'], complexity = 'basic') {
+module.exports = function generateSVG(
+  width = 24,
+  height = 24,
+  colors = ['#000000', '#333333', '#cccccc'],
+  complexity = 'basic'
+) {
   const graphics = [];
   const groupCount = complexity === 'complex' ?  getRandom(2, 5) : 1;
   for (let groups = 0; groups < groupCount; groups++) {
