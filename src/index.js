@@ -1,4 +1,4 @@
-function getRandom(minimum, maximum, integer = true) {
+const getRandom = (minimum, maximum, integer = true) => {
   const min = Math.ceil(minimum);
   const max = Math.floor(maximum);
   const random = Math.random() * (max - min);
