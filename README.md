@@ -1,4 +1,4 @@
-# Procedural SVG generator [![npm version](https://badge.fury.io/js/donatello-svg.svg)](https://badge.fury.io/js/donatello-svg)
+# Procedural SVG Generator [![npm version](https://badge.fury.io/js/donatello-svg.svg)](https://badge.fury.io/js/donatello-svg)
 
 ![Procedural SVG](http://drive.google.com/uc?export=view&id=1M43r5b4ARsU4MTb-hUdD9SQxZagBwiHs)
 
