@@ -30,7 +30,7 @@ const complexSVG = generateSVG(28, 28, ['#bbaa88', '#33eeff', '#ccaaee'], 'compl
 ## React
 ```
 import generateSVG from 'donatello-svg';
-import InlineSVG from 'svg-inline-react'; // Note: This is required in many cases to output inline SVGs.
+import InlineSVG from 'svg-inline-react'; // Note: This is often required to output inline SVGs.
 
 const specificColorSVG = generateSVG(28, 28, ['#cc66aa', '#33eeff']);
 
