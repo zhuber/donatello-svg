@@ -85,5 +85,6 @@ module.exports = function generateSVG(
   >
     ${graphics.map(graphic => renderGraphic(graphic))}
   </svg>`;
+  // Return the svg wih the rendered graphics.
   return svg;
 }
